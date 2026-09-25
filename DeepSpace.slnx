@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="DeepSpace.Domain/DeepSpace.Domain.csproj" />
+  <Project Path="DeepSpace.Engine.Tests/DeepSpace.Engine.Tests.csproj" />
+  <Project Path="DeepSpace.Engine/DeepSpace.Engine.csproj" />
+  <Project Path="DeepSpace.Persistence/DeepSpace.Persistence.csproj" />
+  <Project Path="DeepSpace.Server/DeepSpace.Server.csproj" />
+</Solution>

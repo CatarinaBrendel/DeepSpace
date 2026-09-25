@@ -1,0 +1,102 @@
+# ============================================================
+# .NET
+# ============================================================
+
+**/bin/
+**/obj/
+
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+
+# ============================================================
+# Node / pnpm / Vite
+# ============================================================
+
+**/node_modules/
+
+# Build output
+**/dist/
+**/dist-ssr/
+
+# Vite
+**/.vite/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+
+# ============================================================
+# Tauri / Rust
+# ============================================================
+
+**/target/
+
+# Keep Cargo.lock for applications
+# DO NOT ignore Cargo.lock
+
+
+# ============================================================
+# macOS
+# ============================================================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+Icon?
+._*
+
+.Spotlight-V100
+.Trashes
+
+
+# ============================================================
+# JetBrains
+# ============================================================
+
+.idea/
+*.iml
+
+
+# ============================================================
+# VS Code
+# ============================================================
+
+# Keep this commented if we later want to share project settings.
+# .vscode/
+
+
+# ============================================================
+# Misc
+# ============================================================
+
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Local logs
+*.log
+logs/
