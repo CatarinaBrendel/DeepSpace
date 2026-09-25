@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "build": "run-p type-check \"build-only {@}\" --",
+    "backend": "dotnet publish ../DeepSpace.Server/DeepSpace.Server.csproj -c Release -r osx-arm64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true && mkdir -p src-tauri/binaries && cp ../DeepSpace.Server/bin/Release/net10.0/osx-arm64/publish/DeepSpace.Server src-tauri/binaries/deepspace-server-aarch64-apple-darwin",
+    "desktop": "pnpm backend && pnpm tauri dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "vue": "^3.5.42"
@@ -16,6 +18,7 @@
     "@types/node": "^24.13.3",
     "@vitejs/plugin-vue": "^6.0.8",
     "@vue/tsconfig": "^0.9.1",
+    "prettier": "^3.9.9",
     "typescript": "~6.0.2",
     "vite": "^8.3.0",
     "vue-tsc": "^3.3.11"

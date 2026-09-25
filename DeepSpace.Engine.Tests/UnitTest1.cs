@@ -1,4 +1,4 @@
-﻿namespace DeepSpace.Engine.Tests;
+namespace DeepSpace.Engine.Tests;
 
 public class UnitTest1
 {

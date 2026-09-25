@@ -1,4 +1,4 @@
-﻿namespace DeepSpace.Persistence;
+namespace DeepSpace.Persistence;
 
 public class Class1
 {

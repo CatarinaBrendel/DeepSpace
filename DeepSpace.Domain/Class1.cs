@@ -1,4 +1,4 @@
-﻿namespace DeepSpace.Domain;
+namespace DeepSpace.Domain;
 
 public class Class1
 {

@@ -1,4 +1,4 @@
-﻿namespace DeepSpace.Engine;
+namespace DeepSpace.Engine;
 
 public class Class1
 {

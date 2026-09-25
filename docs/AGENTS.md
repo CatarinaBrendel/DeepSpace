@@ -5,13 +5,13 @@
 This project is a sandbox programming and automation game centered
 around:
 
-- deep-space exploration
-- spacecraft operation and maintenance
-- scientific observation
-- sample collection
-- sample analysis
-- automation
-- player-authored software
+-   deep-space exploration
+-   spacecraft operation and maintenance
+-   scientific observation
+-   sample collection
+-   sample analysis
+-   automation
+-   player-authored software
 
 The player operates a research spacecraft and progressively writes
 software to automate its systems.
@@ -47,7 +47,7 @@ successfully handle situations.
 
 Progression is not primarily a conventional XP/level system.
 
-```text
+``` text
 Knowledge
     ↓
 Better player-written software
@@ -73,7 +73,7 @@ environment between scenarios.
 
 A mature player environment might eventually resemble:
 
-```text
+``` text
 /scripts
     power.py
     thermal.py
@@ -94,7 +94,7 @@ A mature player environment might eventually resemble:
 
 ## 4. Core Gameplay Loop
 
-```text
+``` text
 Prepare
    ↓
 Travel
@@ -126,26 +126,26 @@ The spacecraft should behave as an interconnected simulation.
 
 Potential concepts:
 
-- generation
-- reactor / solar generation
-- batteries
-- consumption
-- maximum output
-- load shedding
-- emergency power
-- power priorities
+-   generation
+-   reactor / solar generation
+-   batteries
+-   consumption
+-   maximum output
+-   load shedding
+-   emergency power
+-   power priorities
 
 ### Thermal
 
 Potential concepts:
 
-- component temperature
-- coolant
-- radiators
-- environmental temperature
-- solar exposure
-- thermal limits
-- emergency shutdown
+-   component temperature
+-   coolant
+-   radiators
+-   environmental temperature
+-   solar exposure
+-   thermal limits
+-   emergency shutdown
 
 Power and thermal management should strongly interact. Running
 scientific instruments may consume significant power and generate
@@ -155,12 +155,12 @@ significant heat.
 
 Potential concepts:
 
-- fuel
-- reaction mass
-- engine efficiency
-- burns
-- delta-v
-- maneuver planning
+-   fuel
+-   reaction mass
+-   engine efficiency
+-   burns
+-   delta-v
+-   maneuver planning
 
 Exact simulation fidelity will be decided during implementation.
 Gameplay clarity takes precedence over unnecessary physical complexity.
@@ -169,13 +169,13 @@ Gameplay clarity takes precedence over unnecessary physical complexity.
 
 Potential concepts:
 
-- component condition
-- degradation
-- damage
-- maintenance
-- repair
-- spare parts
-- environmental hazards
+-   component condition
+-   degradation
+-   damage
+-   maintenance
+-   repair
+-   spare parts
+-   environmental hazards
 
 Failures should generally produce consequences rather than immediate
 game-over states.
@@ -201,13 +201,13 @@ introduced. They should have meaningful simulation consequences.
 
 Potential later systems:
 
-- bandwidth
-- communication delay
-- transmission windows
-- antenna orientation
-- signal strength
-- telemetry
-- scientific data transmission
+-   bandwidth
+-   communication delay
+-   transmission windows
+-   antenna orientation
+-   signal strength
+-   telemetry
+-   scientific data transmission
 
 Deep-space communications should eventually make local data processing
 useful.
@@ -218,7 +218,7 @@ The game uses simulated time.
 
 Potential time scales:
 
-```text
+``` text
 PAUSED
 ×1
 ×10
@@ -241,7 +241,7 @@ directly using wall-clock time.
 
 Conceptually:
 
-```csharp
+``` csharp
 public interface IGameClock
 {
     DateTimeOffset Now { get; }
@@ -251,7 +251,7 @@ public interface IGameClock
 
 Player script operations such as:
 
-```python
+``` python
 sleep(60)
 ```
 
@@ -268,18 +268,18 @@ Science is one of the primary rewards for exploration.
 
 Potential observations include:
 
-- stars
-- planets
-- moons
-- asteroids
-- comets
-- atmospheres
-- mineral deposits
-- unusual radiation
-- chemical signatures
-- organic compounds
-- anomalies
-- unknown objects
+-   stars
+-   planets
+-   moons
+-   asteroids
+-   comets
+-   atmospheres
+-   mineral deposits
+-   unusual radiation
+-   chemical signatures
+-   organic compounds
+-   anomalies
+-   unknown objects
 
 Scanning initially reveals incomplete information. Further observation
 increases knowledge. The player decides which objects deserve
@@ -299,13 +299,13 @@ Different laboratory processes reveal different information.
 
 Analysis may consume:
 
-- time
-- power
-- CPU
-- storage
-- reagents
-- instrument lifetime
-- sample mass
+-   time
+-   power
+-   CPU
+-   storage
+-   reagents
+-   instrument lifetime
+-   sample mass
 
 Blindly running every possible analysis should not always be optimal.
 
@@ -348,7 +348,7 @@ A Unix-like environment is currently the preferred direction.
 
 Example:
 
-```text
+``` text
 captain@odyssey:~$ ls
 bin  data  missions  samples  scripts  telemetry
 
@@ -370,7 +370,7 @@ Python-like scripting is currently the preferred player-facing language.
 
 Example:
 
-```python
+``` python
 from ship import power, thermal
 
 reactor = power.get("reactor")
@@ -393,18 +393,18 @@ host.
 
 The scripting environment should support:
 
-- sandboxing
-- execution limits
-- CPU accounting
-- memory accounting
-- cancellation
-- simulated sleep
-- simulated time
-- events
-- deterministic behavior where practical
-- script lifecycle management
-- controlled filesystem access
-- diagnostics
+-   sandboxing
+-   execution limits
+-   CPU accounting
+-   memory accounting
+-   cancellation
+-   simulated sleep
+-   simulated time
+-   events
+-   deterministic behavior where practical
+-   script lifecycle management
+-   controlled filesystem access
+-   diagnostics
 
 Do not assume Python.NET, IronPython, external CPython, a custom
 interpreter, or another implementation until this decision has
@@ -415,13 +415,13 @@ explicitly been made.
 Players may initially write simple polling loops. More advanced
 capabilities may later include:
 
-- event-driven programming
-- scheduled tasks
-- multiple processes
-- libraries/modules
-- reusable components
-- message buses / inter-process communication
-- background services
+-   event-driven programming
+-   scheduled tasks
+-   multiple processes
+-   libraries/modules
+-   reusable components
+-   message buses / inter-process communication
+-   background services
 
 The player's codebase may organically evolve from simple scripts into a
 small software architecture.
@@ -460,7 +460,7 @@ It is not primarily a browser game.
 
 Current preferred architecture:
 
-```text
+``` text
 Tauri
   │
   └── Vue / TypeScript
@@ -497,7 +497,7 @@ model exists.
 
 ## 17. Conceptual Solution Structure
 
-```text
+``` text
 DeepSpace.sln
 
 DeepSpace.Domain
@@ -534,14 +534,14 @@ this conceptual structure.
 
 The UI should be:
 
-- minimal
-- functional
-- information-dense without becoming cluttered
-- dark
-- technical
-- credible
-- restrained
-- primarily a spacecraft workstation
+-   minimal
+-   functional
+-   information-dense without becoming cluttered
+-   dark
+-   technical
+-   credible
+-   restrained
+-   primarily a spacecraft workstation
 
 Avoid excessive decorative sci-fi HUD elements and generic "AI-generated
 sci-fi dashboard" aesthetics.
@@ -551,14 +551,14 @@ rather than a movie HUD.
 
 The explored layout includes:
 
-- persistent ship/system status
-- central contextual workspace
-- editor
-- terminal/console
-- mission information
-- events/logs
-- science interfaces
-- time controls
+-   persistent ship/system status
+-   central contextual workspace
+-   editor
+-   terminal/console
+-   mission information
+-   events/logs
+-   science interfaces
+-   time controls
 
 ### No Map-Centric UI
 
@@ -595,13 +595,13 @@ automation, instrumentation, and software.
 
 Do **not** begin by building:
 
-- a procedural galaxy
-- dozens of star systems
-- complex missions
-- a huge component catalog
-- advanced sample chemistry
-- a full Unix clone
-- a large upgrade tree
+-   a procedural galaxy
+-   dozens of star systems
+-   complex missions
+-   a huge component catalog
+-   advanced sample chemistry
+-   a full Unix clone
+-   a large upgrade tree
 
 First prove that programming the spacecraft is enjoyable.
 
@@ -609,19 +609,19 @@ First prove that programming the spacecraft is enjoyable.
 
 The initial prototype should contain approximately:
 
-- one spacecraft
-- one generator
-- one battery
-- one consumer
-- basic thermal behavior
-- simulation clock with at least ×1 / ×10 / ×100 and likely pause
-- CodeMirror editor
-- player script that can read battery state and control the generator
-- ship status UI sufficient to observe the consequences of player code
+-   one spacecraft
+-   one generator
+-   one battery
+-   one consumer
+-   basic thermal behavior
+-   simulation clock with at least ×1 / ×10 / ×100 and likely pause
+-   CodeMirror editor
+-   player script that can read battery state and control the generator
+-   ship status UI sufficient to observe the consequences of player code
 
 Conceptual player script:
 
-```python
+``` python
 while True:
     if battery.charge < 0.30:
         generator.output = 1.0
@@ -642,7 +642,7 @@ samples, or additional systems will not solve the fundamental problem.
 
 ## 21. Likely Expansion Order
 
-```text
+``` text
 Power
   ↓
 Thermal
@@ -681,18 +681,18 @@ files.
 
 Do **not** assume:
 
-- class names
-- interfaces
-- method signatures
-- namespaces
-- DTOs
-- API routes
-- database entities
-- Vue components
-- stores
-- directory structures
-- configuration
-- dependencies
+-   class names
+-   interfaces
+-   method signatures
+-   namespaces
+-   DTOs
+-   API routes
+-   database entities
+-   Vue components
+-   stores
+-   directory structures
+-   configuration
+-   dependencies
 
 If the required source has not been provided, ask for the exact relevant
 file(s).
@@ -762,7 +762,7 @@ programming opportunity, diagnostic clue, or meaningful feedback.
 The player should frequently be able to perform an operation manually
 before automating it:
 
-```text
+``` text
 Understand system
       ↓
 Operate manually
@@ -806,7 +806,7 @@ Player scripts should accumulate history.
 
 A mature script may contain:
 
-```python
+``` python
 # Added after Kepler-186 incident:
 # Never start chromatography while radiator B is offline.
 ```
@@ -820,24 +820,24 @@ exploration career.
 
 These are ideas, not committed MVP features:
 
-- autonomous probes
-- multiple spacecraft
-- probe fleets
-- advanced scientific pipelines
-- remote spacecraft
-- communication delay
-- large datasets
-- local data processing
-- autonomous mission planning
-- programmable robotics
-- rover/drone operations
-- increasingly distant star systems
-- unknown phenomena
-- equipment manufacturing
-- custom spacecraft configurations
-- advanced onboard computing
-- inter-process communication
-- player-created libraries
+-   autonomous probes
+-   multiple spacecraft
+-   probe fleets
+-   advanced scientific pipelines
+-   remote spacecraft
+-   communication delay
+-   large datasets
+-   local data processing
+-   autonomous mission planning
+-   programmable robotics
+-   rover/drone operations
+-   increasingly distant star systems
+-   unknown phenomena
+-   equipment manufacturing
+-   custom spacecraft configurations
+-   advanced onboard computing
+-   inter-process communication
+-   player-created libraries
 
 Do not implement these merely because they are listed here.
 
@@ -845,20 +845,20 @@ Do not implement these merely because they are listed here.
 
 The following areas remain intentionally undecided:
 
-- exact game title
-- exact Python/scripting runtime
-- detailed simulation tick architecture
-- final API shape
-- final persistence schema
-- exact physics fidelity
-- procedural generation implementation
-- mission framework
-- science classification model
-- component degradation model
-- final UI layout
-- exact progression economy
-- whether fleets will ultimately exist
-- exact communication model
+-   exact game title
+-   exact Python/scripting runtime
+-   detailed simulation tick architecture
+-   final API shape
+-   final persistence schema
+-   exact physics fidelity
+-   procedural generation implementation
+-   mission framework
+-   science classification model
+-   component degradation model
+-   final UI layout
+-   exact progression economy
+-   whether fleets will ultimately exist
+-   exact communication model
 
 Agents must not silently convert these open questions into established
 project decisions.
@@ -872,7 +872,7 @@ Do not start with exploration.
 
 Start with the smallest programmable spacecraft:
 
-```text
+``` text
 Tauri desktop application
 
         +
@@ -914,26 +914,96 @@ When evaluating a feature, ask:
 
 If not, reconsider whether the feature belongs in the game.
 
-## Coding Style and Formatting
+## 27. Development Workflow and Commit Discipline
 
-### General
+Development should proceed in **small, coherent, independently verifiable steps**.
 
-- Prefer readable, compact code.
-- Avoid unnecessary vertical expansion.
-- Follow the repository's `.editorconfig` and formatter configuration.
-- Formatting changes should not obscure functional changes.
+Do not attempt to implement an entire milestone or vertical slice in one large change when it can be decomposed into smaller working increments.
 
-### C#
+The preferred loop is:
 
-- Prefer compact expressions when they remain readable and fit comfortably on one line.
-- Do not split constructor calls, method calls, argument lists, or similar expressions merely because they contain multiple arguments.
-- Prefer:
-  `var battery = new Battery(capacity: 100, charge: 75);`
-- Use multiline formatting when the expression is genuinely long or clearer when structurally separated.
-- Preserve intentionally compact existing code when editing nearby code.
-- Use `dotnet format` for standard Roslyn formatting, but do not rely on it to decide when compact expressions should be collapsed or expanded.
+```text
+Inspect current code
+      ↓
+Define one narrow change
+      ↓
+Implement
+      ↓
+Build / test
+      ↓
+Verify behavior
+      ↓
+Commit stable state
+      ↓
+Continue
+```
 
-### TypeScript / Vue / JSON / Markdown
+Each implementation step should leave the repository in a buildable, understandable state whenever practical.
 
-- Follow the repository Prettier configuration.
-- Prefer the formatting produced by Prettier rather than manually fighting its output.
+### Commit Boundaries
+
+Prefer commits around meaningful technical milestones, for example:
+
+```text
+Initialize DeepSpace project
+Add simulation game clock
+Add basic power component model
+Add battery charge/discharge simulation
+Add simulation advancement tests
+Expose ship state through server API
+Display power state in Vue UI
+```
+
+Avoid large commits that mix unrelated concerns such as simulation changes, UI redesign, persistence changes, and scripting infrastructure.
+
+Do not create artificial commits for every tiny edit. A commit should represent one coherent change that can be understood and reviewed independently.
+
+### Build the Foundation Before the Surface
+
+Implement authoritative simulation behavior before building substantial UI around it.
+
+For the initial development sequence, prefer:
+
+```text
+Simulation time
+      ↓
+Minimal ship power model
+      ↓
+Automated engine tests
+      ↓
+Server/API boundary
+      ↓
+Minimal status UI
+      ↓
+Player scripting
+      ↓
+Code editor integration
+```
+
+In particular, **do not start with CodeMirror or the scripting runtime** merely because programming is the central game mechanic. First establish a deterministic simulation that scripts will eventually control.
+
+### Verify Before Continuing
+
+After a coherent change:
+
+1. Build the affected projects.
+2. Run relevant automated tests.
+3. Manually verify behavior when appropriate.
+4. Fix regressions before expanding the scope.
+5. Commit the stable result.
+6. Only then move to the next development step.
+
+When assisting with development, AI agents should explicitly identify a sensible commit point after a coherent milestone has been completed and verified.
+
+### Do Not Skip Ahead
+
+If the current milestone exposes an architectural problem, resolve that problem before layering additional systems on top of it.
+
+Do not compensate for an unstable foundation by adding more abstractions or future-facing infrastructure.
+
+The immediate post-bootstrap milestone is:
+
+> **Simulation time + the minimal spacecraft power model.**
+
+CodeMirror, player scripting, science, navigation, procedural exploration, and persistence expansion come later.
+
