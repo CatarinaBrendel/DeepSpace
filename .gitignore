@@ -99,4 +99,4 @@ Icon?
 
 # Local logs
 *.log
-logs/
+logs/DeepSpace.Web/src-tauri/binaries/
