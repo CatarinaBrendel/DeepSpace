@@ -1,22 +1,28 @@
+using DeepSpace.Domain;
 using DeepSpace.Domain.Power;
 
 namespace DeepSpace.Engine.Power;
 
 public sealed class PowerSimulation
 {
-    public PowerSimulationResult Step(
-        Generator generator,
-        Consumer consumer,
-        Battery battery,
-        TimeSpan elapsed)
+    public PowerSimulationResult Step(Spacecraft spacecraft, TimeSpan elapsed)
     {
+        ArgumentNullException.ThrowIfNull(spacecraft);
+
         if (elapsed < TimeSpan.Zero)
             throw new ArgumentOutOfRangeException(nameof(elapsed), "Elapsed time must not be negative.");
 
         var hours = elapsed.TotalHours;
 
-        var generatedWh = generator.IsRunning ? generator.OutputWatts * hours : 0;
-        var demandedWh = consumer.IsEnabled ? consumer.PowerDrawWatts * hours : 0;
+        var generatedWh = spacecraft
+            .GetComponents<Generator>()
+            .Where(generator => generator.IsRunning)
+            .Sum(generator => generator.OutputWatts * hours);
+
+        var demandedWh = spacecraft
+            .GetComponents<Consumer>()
+            .Where(consumer => consumer.IsEnabled)
+            .Sum(consumer => consumer.PowerDrawWatts * hours);
 
         var balanceWh = generatedWh - demandedWh;
 
@@ -24,7 +30,9 @@ public sealed class PowerSimulation
         var suppliedWh = 0.0;
         var unmetDemandWh = 0.0;
 
-        if (balanceWh > 0)
+        var battery = spacecraft.GetComponents<Battery>().FirstOrDefault();
+
+        if (balanceWh > 0 && battery is not null)
         {
             storedWh = battery.Store(balanceWh);
         }
@@ -32,7 +40,9 @@ public sealed class PowerSimulation
         {
             var deficitWh = -balanceWh;
 
-            suppliedWh = battery.Supply(deficitWh);
+            if (battery is not null)
+                suppliedWh = battery.Supply(deficitWh);
+
             unmetDemandWh = deficitWh - suppliedWh;
         }
 
