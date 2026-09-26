@@ -16,7 +16,9 @@ builder.Services.AddSingleton(_ =>
     spacecraft.AddComponent("battery_1", new Battery(capacityWh: 5_000, chargeWh: 3_500));
     spacecraft.AddComponent("life_support", new Consumer(powerDrawWatts: 250));
 
-    return new GameSimulation(spacecraft);
+    var simulation = new GameSimulation(spacecraft);
+
+    return new GameSession(simulation);
 });
 
 builder.Services.AddHostedService<SimulationHost>();

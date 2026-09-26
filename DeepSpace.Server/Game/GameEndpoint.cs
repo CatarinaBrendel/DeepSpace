@@ -14,19 +14,22 @@ public static class GameEndpoints
         return endpoints;
     }
 
-    private static GameStateResponse GetState(GameSimulation simulation)
+    private static GameStateResponse GetState(GameSession gameSession)
     {
-        var battery = simulation.Spacecraft
-            .GetComponents<Battery>()
-            .FirstOrDefault();
+        return gameSession.Read(simulation =>
+        {
+            var battery = simulation.Spacecraft
+                .GetComponents<Battery>()
+                .FirstOrDefault();
 
-        return new GameStateResponse(
-            ElapsedGameSeconds: simulation.ElapsedGameTime.TotalSeconds,
-            Battery: battery is null
-                ? null
-                : new BatteryStateResponse(
-                    CapacityWh: battery.CapacityWh,
-                    ChargeWh: battery.ChargeWh,
-                    StateOfCharge: battery.StateOfCharge));
+            return new GameStateResponse(
+                ElapsedGameSeconds: simulation.ElapsedGameTime.TotalSeconds,
+                Battery: battery is null
+                    ? null
+                    : new BatteryStateResponse(
+                        CapacityWh: battery.CapacityWh,
+                        ChargeWh: battery.ChargeWh,
+                        StateOfCharge: battery.StateOfCharge));
+        });
     }
 }

@@ -1,10 +1,10 @@
 using System.Diagnostics;
 
-using DeepSpace.Engine;
+using DeepSpace.Server.Game;
 
 namespace DeepSpace.Server.Simulation;
 
-public sealed class SimulationHost(GameSimulation simulation) : BackgroundService
+public sealed class SimulationHost(GameSession gameSession) : BackgroundService
 {
     private static readonly TimeSpan TickInterval = TimeSpan.FromSeconds(1);
 
@@ -22,7 +22,7 @@ public sealed class SimulationHost(GameSimulation simulation) : BackgroundServic
 
             previousElapsed = currentElapsed;
 
-            simulation.Advance(elapsedRealTime);
+            gameSession.Update(simulation => simulation.Advance(elapsedRealTime));
         }
     }
 }
