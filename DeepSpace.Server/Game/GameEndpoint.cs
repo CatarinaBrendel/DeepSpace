@@ -1,0 +1,32 @@
+using DeepSpace.Domain.Power;
+using DeepSpace.Engine;
+
+namespace DeepSpace.Server.Game;
+
+public static class GameEndpoints
+{
+    public static IEndpointRouteBuilder MapGameEndpoints(this IEndpointRouteBuilder endpoints)
+    {
+        var group = endpoints.MapGroup("/api/game");
+
+        group.MapGet("/state", GetState);
+
+        return endpoints;
+    }
+
+    private static GameStateResponse GetState(GameSimulation simulation)
+    {
+        var battery = simulation.Spacecraft
+            .GetComponents<Battery>()
+            .FirstOrDefault();
+
+        return new GameStateResponse(
+            ElapsedGameSeconds: simulation.ElapsedGameTime.TotalSeconds,
+            Battery: battery is null
+                ? null
+                : new BatteryStateResponse(
+                    CapacityWh: battery.CapacityWh,
+                    ChargeWh: battery.ChargeWh,
+                    StateOfCharge: battery.StateOfCharge));
+    }
+}
