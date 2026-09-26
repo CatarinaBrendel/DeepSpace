@@ -52,6 +52,9 @@ pnpm-debug.log*
 
 **/target/
 
+# Tauri generated C# server sidecars
+DeepSpace.Web/src-tauri/binaries/deepspace-server-*
+
 # Keep Cargo.lock for applications
 # DO NOT ignore Cargo.lock
 
