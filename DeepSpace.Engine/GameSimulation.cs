@@ -1,4 +1,5 @@
 using DeepSpace.Domain;
+using DeepSpace.Domain.Power;
 using DeepSpace.Engine.Power;
 using DeepSpace.Engine.Time;
 
@@ -28,5 +29,29 @@ public sealed class GameSimulation
         var elapsedGameTime = _timer.Advance(elapsedRealTime);
 
         return _powerSimulation.Step(Spacecraft, elapsedGameTime);
+    }
+
+    public bool StartGenerator(string componentId)
+    {
+        var generator = Spacecraft.GetComponent<Generator>(componentId);
+
+        if (generator is null)
+            return false;
+
+        generator.Start();
+
+        return true;
+    }
+
+    public bool StopGenerator(string componentId)
+    {
+        var generator = Spacecraft.GetComponent<Generator>(componentId);
+
+        if (generator is null)
+            return false;
+
+        generator.Stop();
+
+        return true;
     }
 }

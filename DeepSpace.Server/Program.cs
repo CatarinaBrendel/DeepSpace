@@ -1,6 +1,7 @@
 using DeepSpace.Domain;
 using DeepSpace.Domain.Power;
 using DeepSpace.Engine;
+using DeepSpace.Server.Components;
 using DeepSpace.Server.Game;
 using DeepSpace.Server.Simulation;
 
@@ -29,5 +30,6 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 
 app.MapGameEndpoints();
+app.MapComponentEndpoints();
 
 app.Run();
