@@ -66,4 +66,27 @@ public sealed class SpacecraftTests
         Assert.Contains(generator1, generators);
         Assert.Contains(generator2, generators);
     }
+
+    [Fact]
+    public void GetComponentsWithIds_ReturnsMatchingComponentsAndIds()
+    {
+        var spacecraft = new Spacecraft();
+
+        var generator1 = new Generator(outputWatts: 400);
+        var generator2 = new Generator(outputWatts: 600);
+
+        spacecraft.AddComponent("generator_1", generator1);
+        spacecraft.AddComponent("generator_2", generator2);
+        spacecraft.AddComponent("battery_1", new Battery(capacityWh: 5_000, chargeWh: 3_500));
+
+        var generators = spacecraft
+            .GetComponentsWithIds<Generator>()
+            .ToArray();
+
+        Assert.Equal(2, generators.Length);
+        Assert.Equal("generator_1", generators[0].Key);
+        Assert.Same(generator1, generators[0].Value);
+        Assert.Equal("generator_2", generators[1].Key);
+        Assert.Same(generator2, generators[1].Value);
+    }
 }

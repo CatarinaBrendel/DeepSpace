@@ -22,6 +22,14 @@ public static class GameEndpoints
                 .GetComponents<Battery>()
                 .FirstOrDefault();
 
+            var generators = simulation.Spacecraft
+                .GetComponentsWithIds<Generator>()
+                .Select(entry => new GeneratorStateResponse(
+                    Id: entry.Key,
+                    OutputWatts: entry.Value.OutputWatts,
+                    IsRunning: entry.Value.IsRunning))
+                .ToArray();
+
             return new GameStateResponse(
                 ElapsedGameSeconds: simulation.ElapsedGameTime.TotalSeconds,
                 Battery: battery is null
@@ -29,7 +37,8 @@ public static class GameEndpoints
                     : new BatteryStateResponse(
                         CapacityWh: battery.CapacityWh,
                         ChargeWh: battery.ChargeWh,
-                        StateOfCharge: battery.StateOfCharge));
+                        StateOfCharge: battery.StateOfCharge),
+                Generators: generators);
         });
     }
 }

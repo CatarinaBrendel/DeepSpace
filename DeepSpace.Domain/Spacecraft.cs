@@ -28,4 +28,11 @@ public sealed class Spacecraft
     {
         return _components.Values.OfType<T>();
     }
+
+    public IEnumerable<KeyValuePair<string, T>> GetComponentsWithIds<T>() where T : class
+    {
+        return _components
+            .Where(entry => entry.Value is T)
+            .Select(entry => new KeyValuePair<string, T>(entry.Key, (T)entry.Value));
+    }
 }
